@@ -9,11 +9,11 @@ const asyncHandler = require('express-async-handler');
 router.get('/', asyncHandler(async (req, res) => {
     try {
         const products = await Product.find()
-        .populate('proCategoryId', 'id name')
-        .populate('proSubCategoryId', 'id name')
-        .populate('proBrandId', 'id name')
-        .populate('proVariantTypeId', 'id type')
-        .populate('proVariantId', 'id name');
+            .populate('proCategoryId', 'id name')
+            .populate('proSubCategoryId', 'id name')
+            .populate('proBrandId', 'id name')
+            .populate('proVariantTypeId', 'id type')
+            .populate('proVariantId', 'id name');
         res.json({ success: true, message: "Products retrieved successfully.", data: products });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
@@ -87,7 +87,7 @@ router.post('/', asyncHandler(async (req, res) => {
             });
 
             // Create a new product object with data
-            const newProduct = new Product({ name, description, quantity, price, offerPrice, proCategoryId, proSubCategoryId, proBrandId,proVariantTypeId, proVariantId, images: imageUrls });
+            const newProduct = new Product({ name, description, quantity, price, offerPrice, proCategoryId, proSubCategoryId, proBrandId, proVariantTypeId, proVariantId, images: imageUrls });
 
             // Save the new product to the database
             await newProduct.save();
